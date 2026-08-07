@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FITCS Faculty Feedback</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+
+    <div class="brand-section">
+        <div class="logo">FITCS</div>
+
+        <h1>Faculty Feedback</h1>
+
+        <p>
+            Faculty Feedback Portal
+        </p>
+    </div>
+
+    <div class="login-card">
+
+        <h2>Faculty Login</h2>
+
+        <p class="login-description">
+            Enter your MIS ID and password to view your feedback.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="misid">MIS ID</label>
+
+                <input
+                    type="text"
+                    id="misid"
+                    placeholder="Enter MIS ID"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter Password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword"
+                        class="password-toggle"
+                        aria-label="Show password"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+            <button
+                type="submit"
+                id="loginButton"
+                class="login-button"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <div
+            id="loading"
+            class="loading hidden"
+        >
+            Verifying login...
+        </div>
+
+        <div
+            id="message"
+            class="message hidden"
+        ></div>
+
+    </div>
+
+    <div class="footer-text">
+        FITCS Faculty Feedback System - Developed by - Mr. Hardik Parmar
+    </div>
+
+</div>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

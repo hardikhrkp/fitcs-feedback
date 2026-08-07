@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Faculty Feedback Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="dashboard-page">
+
+<header class="top-header">
+
+    <div class="header-content">
+
+        <div class="header-brand">
+
+            <div class="small-logo">
+                FITCS
+            </div>
+
+            <div>
+                <h2>Faculty Feedback</h2>
+
+                <span>
+                    Feedback Dashboard
+                </span>
+            </div>
+
+        </div>
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <section class="welcome-card">
+
+        <div>
+
+            <p class="welcome-label">
+                Welcome
+            </p>
+
+            <h1 id="facultyName">
+                Faculty
+            </h1>
+
+            <p>
+                MIS ID:
+                <strong id="facultyMis">
+                    -
+                </strong>
+            </p>
+
+        </div>
+
+        <div class="profile-circle" id="profileInitial">
+            F
+        </div>
+
+    </section>
+
+
+    <section class="feedback-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>
+                    Your Feedback
+                </h2>
+
+                <p>
+                    Feedback received from students
+                </p>
+
+            </div>
+
+            <span
+                id="feedbackCount"
+                class="feedback-count"
+            >
+                0 Feedback
+            </span>
+
+        </div>
+
+
+        <div
+            id="feedbackLoading"
+            class="dashboard-loading"
+        >
+            Loading your feedback...
+        </div>
+
+
+        <div
+            id="feedbackMessage"
+            class="message hidden"
+        ></div>
+
+
+        <div
+            id="feedbackContainer"
+            class="feedback-list"
+        ></div>
+
+    </section>
+
+</main>
+
+
+<footer class="dashboard-footer">
+
+    FITCS Faculty Feedback System - Developed by - Mr. Hardik Parmar
+
+</footer>
+
+
+<script src="config.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
