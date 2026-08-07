@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sessionStorage.removeItem("fitcsToken");
     sessionStorage.removeItem("fitcsName");
     sessionStorage.removeItem("fitcsMis");
-
+    
 
     togglePassword.addEventListener(
         "click",
@@ -164,6 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         "fitcsMis",
                         data.misid
                     );
+
+                    sessionStorage.setItem("fitcsCategory", data.category);
 
 
                     showMessage(
