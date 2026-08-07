@@ -78,6 +78,8 @@ document.addEventListener(
 
         loadFeedback();
 
+        checkAcknowledgement();
+
 
         async function loadFeedback() {
 
@@ -354,6 +356,87 @@ document.addEventListener(
 
         }
 
+        document.getElementById("submitAck").addEventListener("click", async function () {
+
+            if (!document.getElementById("agree").checked) {
+                alert("Please accept the acknowledgement.");
+                return;
+            }
+        
+            let remarks = document.getElementById("remarks").value;
+        
+            let token = sessionStorage.getItem("fitcsToken");
+        
+            let params = new URLSearchParams();
+        
+            params.append("action", "acknowledgement");
+            params.append("token", token);
+            params.append("remarks", remarks);
+        
+            let response = await fetch(CONFIG.API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: params.toString()
+            });
+        
+            let data = await response.json();
+        
+            if(data.status=="success"){
+
+                document.getElementById("submitAck").disabled=true;
+            
+                document.getElementById("agree").disabled=true;
+            
+                document.getElementById("remarks").disabled=true;
+            
+                document.getElementById("agree").checked=true;
+            
+                document.getElementById("ackStatus").innerHTML=
+                "✅ Acknowledged on "+data.datetime;
+            
+            }
+        
+        });
+
+        async function checkAcknowledgement(){
+
+            let token = sessionStorage.getItem("fitcsToken");
+        
+            let params = new URLSearchParams();
+        
+            params.append("action","checkAcknowledgement");
+            params.append("token",token);
+        
+            let response = await fetch(CONFIG.API_URL,{
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/x-www-form-urlencoded"
+                },
+                body:params.toString()
+            });
+        
+            let data = await response.json();
+        
+            if(data.status=="already"){
+        
+                document.getElementById("agree").checked=true;
+        
+                document.getElementById("agree").disabled=true;
+        
+                document.getElementById("remarks").value=data.remarks;
+        
+                document.getElementById("remarks").disabled=true;
+        
+                document.getElementById("submitAck").disabled=true;
+        
+                document.getElementById("ackStatus").innerHTML=
+                "✅ Acknowledged on "+data.datetime;
+        
+            }
+        
+        }
 
         function logout() {
 
