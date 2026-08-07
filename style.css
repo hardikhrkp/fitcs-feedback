@@ -644,6 +644,133 @@ body {
 
     padding: 20px;
 }
+/* Acknowledgement */
+
+.ack-section{
+
+    margin-top:40px;
+
+    border-top:1px solid #ddd;
+
+    padding-top:30px;
+
+}
+
+.ack-box{
+
+    background:#f8fafc;
+
+    border:1px solid #dbeafe;
+
+    border-radius:12px;
+
+    padding:25px;
+
+}
+
+.ack-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:500;
+
+    margin-bottom:20px;
+
+}
+
+.ack-label input{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+#remarks{
+
+    width:100%;
+
+    min-height:120px;
+
+    resize:vertical;
+
+    padding:12px;
+
+    border:1px solid #cbd5e1;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    font-family:Arial,sans-serif;
+
+    transition:.3s;
+
+    margin-bottom:20px;
+
+}
+
+#remarks:focus{
+
+    outline:none;
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 5px rgba(37,99,235,.3);
+
+}
+
+#submitAck{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 25px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+#submitAck:hover{
+
+    background:#1d4ed8;
+
+}
+
+#submitAck:disabled{
+
+    background:#94a3b8;
+
+    cursor:not-allowed;
+
+}
+
+.ack-status{
+
+    margin-top:20px;
+
+    font-weight:bold;
+
+    color:#16a34a;
+
+    font-size:16px;
+
+}
 
 
 /* ========================================
