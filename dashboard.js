@@ -19,7 +19,8 @@ document.addEventListener(
             sessionStorage.getItem(
                 "fitcsMis"
             );
-
+        const facultyCategory =
+            sessionStorage.getItem("fitcsCategory");
 
         /*
          * Prevent direct dashboard access.
@@ -55,6 +56,8 @@ document.addEventListener(
         ).textContent =
             facultyMis;
 
+        document.getElementById("facultyCategory").textContent =
+    facultyCategory;
 
         document.getElementById(
             "profileInitial"
