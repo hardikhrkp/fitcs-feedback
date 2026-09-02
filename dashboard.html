@@ -1,177 +1,283 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Faculty Feedback Dashboard</title>
+<title>FITCS Faculty Feedback</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet"
+      href="style.css">
 
 </head>
 
+
 <body class="dashboard-page">
+
 
 <header class="top-header">
 
-    <div class="header-content">
+<div class="header-content">
 
-        <div class="header-brand">
 
-            <div class="small-logo">
-                FITCS
-            </div>
+<div class="header-brand">
 
-            <div>
-                <h2>Faculty Feedback</h2>
+<div class="small-logo">
+FITCS
+</div>
 
-                <span>
-                    Feedback Dashboard
-                </span>
-            </div>
+<div>
 
-        </div>
+<h2>
+Faculty Feedback
+</h2>
 
-        <button
-            id="logoutButton"
-            class="logout-button"
-        >
-            Logout
-        </button>
+<span>
+Feedback Dashboard
+</span>
 
-    </div>
+</div>
+
+</div>
+
+
+<button
+id="logoutButton"
+class="logout-button">
+
+Logout
+
+</button>
+
+
+</div>
 
 </header>
 
 
+
 <main class="dashboard-container">
 
-    <section class="welcome-card">
 
-        <div>
+<!-- FACULTY PROFILE -->
 
-            <p class="welcome-label">
-                Welcome
-            </p>
+<section class="welcome-card">
 
-            <h1 id="facultyName">
-                Faculty
-            </h1>
 
-            <p>
-                MIS ID:
-                <strong id="facultyMis">
-                    -
-                </strong>
-            </p>
-            <p>
-    Category :
-    <strong id="facultyCategory">
-        -
-    </strong>
+<div>
+
+<p class="welcome-label">
+Welcome
 </p>
 
-        </div>
 
-        <div class="profile-circle" id="profileInitial">
-            F
-        </div>
-
-    </section>
+<h1 id="facultyName">
+Faculty
+</h1>
 
 
-    <section class="feedback-section">
-
-        <div class="section-heading">
-
-            <div>
-
-                <h2>
-                    Your Feedback
-                </h2>
-
-                <p>
-                    Feedback received from students
-                </p>
-
-            </div>
-
-            <span
-                id="feedbackCount"
-                class="feedback-count"
-            >
-                0 Feedback
-            </span>
-
-        </div>
+<p>
+MIS ID:
+<strong id="facultyMis">-</strong>
+</p>
 
 
-        <div
-            id="feedbackLoading"
-            class="dashboard-loading"
-        >
-            Loading your feedback...
-        </div>
+<p>
+Category:
+<strong id="facultyCategory">-</strong>
+</p>
 
 
-        <div
-            id="feedbackMessage"
-            class="message hidden"
-        ></div>
+<p>
+Role:
+<strong id="facultyRole">-</strong>
+</p>
 
 
-        <div
-            id="feedbackContainer"
-            class="feedback-list"
-        ></div>
+</div>
 
-        <div class="ack-section">
 
-            <h3>Acknowledgement</h3>
-        
-            <div class="ack-box">
-        
-                <label class="ack-label">
-        
-                    <input type="checkbox" id="agree">
-        
-                    I have read and understood the above feedback.
-        
-                </label>
-        
-                <textarea
-                    id="remarks"
-                    rows="4"
-                    placeholder="Please provide a brief action plan outlining the specific steps you will take to address the feedback and recommendations received during the lecture observation."
-                ></textarea>
-        
-                <button id="submitAck">
-                    Submit Acknowledgement
-                </button>
-        
-                <div id="ackStatus" class="ack-status"></div>
-        
-            </div>
-        
-        </div>
-    </section>
+<div
+class="profile-circle"
+id="profileInitial">
+
+F
+
+</div>
+
+
+</section>
+
+
+
+<!-- OBSERVER SECTION -->
+
+<section
+id="observerSection"
+class="observer-section hidden">
+
+
+<div class="section-heading">
+
+<div>
+
+<h2>
+Observer Panel
+</h2>
+
+<p>
+Give feedback to another faculty member
+</p>
+
+</div>
+
+</div>
+
+
+<div class="observer-form">
+
+<label for="facultySelect">
+    Select Faculty
+</label>
+
+<input
+    type="text"
+    id="facultySelect"
+    list="facultyOptions"
+    placeholder="Search faculty name or MIS ID..."
+    autocomplete="off"
+>
+
+<datalist id="facultyOptions">
+    <!-- Faculty options will be added by JavaScript -->
+</datalist>
+
+<input
+    type="hidden"
+    id="facultySelectValue"
+>
+
+
+
+<label for="observerFeedback">
+
+Feedback
+
+</label>
+
+
+<textarea
+id="observerFeedback"
+rows="6"
+placeholder="Enter your observation / feedback..."
+></textarea>
+
+
+<button
+id="submitFeedback"
+class="submit-feedback-button">
+
+Submit Feedback
+
+</button>
+
+
+<div
+id="observerMessage"
+class="message hidden">
+</div>
+
+
+</div>
+
+</section>
+
+<br>
+<br>
+<br>
+
+<!-- FEEDBACK -->
+
+<section class="feedback-section">
+
+
+<div class="section-heading">
+
+
+<div>
+
+<h2>
+Your Feedback
+</h2>
+
+<p>
+Feedback received from observers
+</p>
+
+</div>
+
+
+<span
+id="feedbackCount"
+class="feedback-count">
+
+0 Feedback
+
+</span>
+
+
+</div>
+
+
+
+<div
+id="feedbackLoading"
+class="dashboard-loading">
+
+Loading your feedback...
+
+</div>
+
+
+
+<div
+id="feedbackMessage"
+class="message hidden">
+</div>
+
+
+
+<div
+id="feedbackContainer"
+class="feedback-list">
+
+</div>
+
+
+</section>
+
 
 </main>
 
 
+
 <footer class="dashboard-footer">
 
-    FITCS Faculty Feedback System - Developed by - Mr. Hardik Parmar & Guided by - Dr. Abhishek Mehta
+FITCS Faculty Feedback System
 
 </footer>
 
 
+
 <script src="config.js"></script>
+
 <script src="dashboard.js"></script>
+
 
 </body>
 
