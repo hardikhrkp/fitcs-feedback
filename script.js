@@ -164,6 +164,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         "fitcsMis",
                         data.misid
                     );
+                    sessionStorage.setItem(
+    "fitcsCategory",
+    data.category
+);
+
+sessionStorage.setItem(
+    "fitcsRole",
+    data.role
+);
 
                     sessionStorage.setItem("fitcsCategory", data.category);
 
