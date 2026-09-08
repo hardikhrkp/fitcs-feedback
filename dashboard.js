@@ -2,6 +2,172 @@ document.addEventListener(
     "DOMContentLoaded",
     function () {
 
+const OBSERVER_QUESTIONS = [
+    { id: "q1", type: "rating", required: true, question: "How you rate the content knowledge of the presenter?", options: [
+        ["1", "Level 1 – Demonstrates limited understanding of subject matter; frequently provides inaccurate or incomplete information."],
+        ["2", "Level 2 – Shows basic understanding of content; occasionally provides accurate information but lacks depth."],
+        ["3", "Level 3 – Demonstrates solid knowledge of subject matter; consistently provides accurate and relevant information."],
+        ["4", "Level 4 – Displays advanced knowledge of content; consistently offers insightful and nuanced explanations."],
+        ["5", "Level 5 – Exhibits exceptional expertise in subject matter; provides comprehensive and innovative insights beyond expectations."]
+    ]},
+    { id: "q2", type: "rating", required: true, question: "How you rate the communication skill (A) of the presenter?", options: [
+        ["1", "Level 1 – Communication is unclear and ineffective; struggles to convey ideas to students."],
+        ["2", "Level 2 – Communication is occasionally unclear; struggles to maintain students' attention."],
+        ["3", "Level 3 – Communicates effectively, yet inclined towards one-sided discourse."],
+        ["4", "Level 4 – Communication is clear and interactive; maintains students' attention and encourages participation."],
+        ["5", "Level 5 – Communication is exceptionally clear and dynamic; captivates students' interest and fosters active learning."]
+    ]},
+    { id: "q3", type: "rating", required: true, question: "How do you rate the skills of Communication-English (B) of the presenter?", options: [
+        ["1", "Level 1 – Struggles with English communication and rarely communicates in English, with unclear pronunciation as well as disfluent with constant interruptions, and vocabulary is very limited and often incorrect."],
+        ["2", "Level 2 – English communication is inconsistent and pronunciation errors are frequent, impacting understanding due to limited vocabulary."],
+        ["3", "Level 3 – Communicates in English most of the time, with generally understandable pronunciation reflecting basic fluency with occasional interruptions, and uses basic vocabulary."],
+        ["4", "Level 4 – Shows strong English communication skills regularly with clear pronunciation, speaks fluently with occasional hesitations and uses a broad vocabulary."],
+        ["5", "Level 5 – Demonstrates outstanding English communication and consistently communicates in English across all contexts, with clear and accurate pronunciation, fluency, and a wide range of vocabulary used appropriately and effectively."]
+    ]},
+    { id: "q4", type: "rating", required: true, question: "How will you rate the Organization and Preparation of Lecture of the presenter?", options: [
+        ["1", "Level 1 – Often appears unprepared for lessons; lacks organization and materials."],
+        ["2", "Level 2 – Sometimes appears prepared for lessons; occasionally lacks necessary materials or resources."],
+        ["3", "Level 3 – Generally prepared for lessons; organizes materials adequately but may lack some coherence."],
+        ["4", "Level 4 – Consistently well-prepared for lessons; organizes materials effectively and delivers structured sessions."],
+        ["5", "Level 5 – Meticulously prepared for every session; demonstrates exceptional organization and utilizes diverse resources effectively."]
+    ]},
+    { id: "q5", type: "rating", required: true, question: "How you rate the use of Audio-visual aids & Technology by the presenter?", options: [
+        ["1", "Level 1 – Minimal or ineffective use of teaching aids, with little impact on learning outcomes."],
+        ["2", "Level 2 – Relies heavily on teaching aids without clear purpose or relevance, detracting from the learning process."],
+        ["3", "Level 3 – Uses teaching aids adequately, but may lack variety or fail to fully enhance the learning experience."],
+        ["4", "Level 4 – Incorporates teaching aids appropriately to support learning objectives, with good variety and relevance."],
+        ["5", "Level 5 – Utilizes a variety of teaching aids effectively to enhance learning and engagement, demonstrating creativity and relevance."]
+    ]},
+    { id: "q6", type: "rating", required: true, question: "How you rate the Teaching and Explanation of the presenter?", options: [
+        ["1", "Level 1 – Provides explanations that are confusing and difficult to follow; struggles to connect with students."],
+        ["2", "Level 2 – Sometimes provides clear explanations; lacks consistency in executing teaching methods and techniques."],
+        ["3", "Level 3 – Generally provides clear and coherent explanations; adapts teaching methods & techniques according to students' needs."],
+        ["4", "Level 4 – Consistently delivers clear and engaging explanations; utilizes varied teaching methods & techniques effectively."],
+        ["5", "Level 5 – Provides exceptional explanations that are easily understandable and captivating with innovative teaching methods & techniques; fosters deep understanding and critical thinking."]
+    ]},
+    { id: "q7", type: "rating", required: true, question: "How you rate the engagement session of the presenter?", options: [
+        ["1", "Level 1 – Rarely engages students in interactive activities; interaction with students is limited and ineffective."],
+        ["2", "Level 2 – Occasionally attempts to engage students; interaction lacks enthusiasm and fails to stimulate interest."],
+        ["3", "Level 3 – Generally fosters student interaction; encourages participation, and responds to student inquiries."],
+        ["4", "Level 4 – Actively promotes student interaction and engagement; creates a supportive and interactive learning environment."],
+        ["5", "Level 5 – Exceptionally adept at fostering student interaction and engagement; cultivates a dynamic and collaborative atmosphere where students are actively involved in learning."]
+    ]},
+    { id: "q8", type: "rating", required: true, question: "How do you rate the Classroom management skills of the presenter?", options: [
+        ["1", "Level 1 – Demonstrates inconsistent classroom management skills leading to frequent disruptions and lack of control."],
+        ["2", "Level 2 – Struggles to maintain proper management of class and enforcing rules inconsistently."],
+        ["3", "Level 3 – Successfully establishes and maintains a positive classroom environment conducive to learning and involvement."],
+        ["4", "Level 4 – Demonstrates effective classroom management skills promoting student participation."],
+        ["5", "Level 5 – Exhibits exceptional classroom management skills creating a harmonious and productive learning environment."]
+    ]},
+    { id: "q9", type: "rating", required: true, question: "How do you rate the Summarising and Closing of Session of the presenter?", options: [
+        ["1", "Level 1 – Fails to provide a meaningful summary, with no student involvement, no connection to objectives, and no reinforcement, ending the session abruptly."],
+        ["2", "Level 2 – Summary is disorganized or incomplete, with little student involvement, unclear connection to objectives, and weak reinforcement."],
+        ["3", "Level 3 – Offers a basic summary covering the main points, with limited student interaction, a vague connection to learning objectives, and minimal reinforcement."],
+        ["4", "Level 4 – Provides a clear and accurate summary, with some student involvement, effectively connecting to learning objectives and using reinforcement techniques."],
+        ["5", "Level 5 – Delivers a comprehensive, coherent summary that synthesizes all key points, actively involves students, and ties back to learning objectives with strong reinforcement and a memorable closing."]
+    ]},
+    { id: "q10", type: "rating", required: true, question: "How do you rate the Assessment of Learning by the presenter?", options: [
+        ["1", "Level 1 – The teacher fails to assess learning effectively during the session, with no meaningful feedback provided, leading to significant gaps in student understanding and engagement."],
+        ["2", "Level 2 – The teacher rarely checks for understanding, relying on limited assessment methods, with delayed or minimal feedback. Few students demonstrate a satisfactory understanding of the material."],
+        ["3", "Level 3 – The teacher uses basic assessment techniques (e.g., simple questioning) to gauge student understanding at key points, provides some feedback, and adjusts instruction sometimes. A majority of students demonstrate a general understanding of the material."],
+        ["4", "Level 4 – The teacher uses multiple assessment strategies regularly to monitor understanding, gives timely feedback, and makes minor instructional adjustments as needed. Most students show a good understanding of the material."],
+        ["5", "Level 5 – The teacher consistently integrates a variety of assessment methods (e.g., questioning, quizzes, discussions) to check for understanding throughout the session, providing immediate and personalized feedback, and adjusts instruction based on assessment results. All students demonstrate a clear understanding of the material."]
+    ]},
+    { id: "q11", type: "rating", required: true, question: "How do you rate the Fostering Critical Thinking in students by the presenter?", options: [
+        ["1", "Level 1 – The teacher does not foster critical thinking, relying solely on rote memorization with no feedback on analytical skills."],
+        ["2", "Level 2 – The teacher rarely engages students in critical thinking, focusing mostly on surface-level learning."],
+        ["3", "Level 3 – The teacher sometimes encourages deeper thought and analysis, with some opportunities for critical engagement."],
+        ["4", "Level 4 – The teacher frequently prompts critical thinking through discussions and problem-solving, providing constructive feedback."],
+        ["5", "Level 5 – The teacher consistently promotes deep analysis and problem-solving, encouraging students to evaluate assumptions and apply knowledge in new ways."]
+    ]},
+    { id: "q12", type: "single", required: true, question: "How do you rate the Punctuality of the presenter?", options: [
+        ["The teaching staff reached the class on time.", "The teaching staff reached the class on time."],
+        ["The teaching staff reached the class late due to some genuine reason", "The teaching staff reached the class late due to some genuine reason."],
+        ["The teaching staff reached the class late without any genuine reason", "The teaching staff reached the class late without any genuine reason."],
+        ["The teachng staff reached the class late by more than 10 minutes", "The teaching staff reached the class late by more than 10 minutes."],
+        ["The teaching staff did not reach class", "The teaching staff did not reach class."]
+    ]},
+    { id: "q13", type: "yesno", required: true, question: "Attention Gaining method of the presenter were displayed on the slide / verbally communicated?" },
+    { id: "q14", type: "yesno", required: true, question: "Stimulating recall of learning from past experience were displayed on the slide / verbally communicated?" },
+    { id: "q15", type: "yesno", required: true, question: "Learning objectives were displayed on the slide / verbally communicated." },
+    { id: "q16", type: "yesno", required: true, question: "Assessment was displayed on the slide / verbally communicated." },
+    { id: "q17", type: "yesno", required: true, question: "Was the teacher’s attire appropriate?" },
+    { id: "q18", type: "textarea", required: true, question: "Interaction with students and doubt-solving", placeholder: "Enter your observation..." },
+    { id: "q19", type: "textarea", required: true, question: "Appropriate use of mobile phone during lecture", placeholder: "Enter your observation..." },
+    { id: "q20", type: "textarea", required: true, question: "Effective utilization of lecture duration", placeholder: "Enter your observation..." },
+    { id: "q21", type: "textarea", required: true, question: "Strengths Observed", placeholder: "Mention the key strengths observed..." },
+    { id: "q22", type: "textarea", required: true, question: "Areas for Improvement", placeholder: "Mention areas that can be improved..." },
+    { id: "q23", type: "textarea", required: true, question: "Suggestions/Recommendations by Observer", placeholder: "Enter your suggestions or recommendations..." },
+    { id: "q24", type: "textarea", required: true, question: "Do you have any additional feedback to share?", placeholder: "Enter any additional feedback..." }
+];
+
+function renderObserverQuestions() {
+    const container = document.getElementById("observerQuestions");
+    if (!container) return;
+    container.innerHTML = "";
+
+    OBSERVER_QUESTIONS.forEach(function(q, index) {
+        const card = document.createElement("div");
+        card.className = "observer-question-card";
+        card.dataset.questionId = q.id;
+
+        const title = document.createElement("div");
+        title.className = "observer-question-title";
+        title.innerHTML = "<span class=\"question-number\">" + (index + 1) + "</span>" + escapeHtml(q.question) + (q.required ? " <span class=\"required-star\">*</span>" : "");
+        card.appendChild(title);
+
+        if (q.type === "rating" || q.type === "single") {
+            const options = document.createElement("div");
+            options.className = q.type === "rating" ? "rating-options" : "single-options";
+            q.options.forEach(function(opt, optIndex) {
+                const label = document.createElement("label");
+                label.className = q.type === "rating" ? "rating-option" : "single-option";
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = q.id;
+                input.value = opt[0];
+                input.required = !!q.required;
+                const text = document.createElement("span");
+                text.textContent = q.type === "rating" ? (opt[0] + " – " + opt[1]) : opt[1];
+                label.appendChild(input);
+                label.appendChild(text);
+                options.appendChild(label);
+            });
+            card.appendChild(options);
+        } else if (q.type === "yesno") {
+            const options = document.createElement("div");
+            options.className = "yesno-options";
+            ["Yes", "No"].forEach(function(value) {
+                const label = document.createElement("label");
+                label.className = "yesno-option";
+                const input = document.createElement("input");
+                input.type = "radio";
+                input.name = q.id;
+                input.value = value;
+                input.required = !!q.required;
+                label.appendChild(input);
+                const text = document.createElement("span");
+                text.textContent = value;
+                label.appendChild(text);
+                options.appendChild(label);
+            });
+            card.appendChild(options);
+        } else {
+            const textarea = document.createElement("textarea");
+            textarea.name = q.id;
+            textarea.rows = 4;
+            textarea.placeholder = q.placeholder || "Enter your response...";
+            textarea.required = !!q.required;
+            textarea.className = "observer-answer-textarea";
+            card.appendChild(textarea);
+        }
+
+        container.appendChild(card);
+    });
+}
+
+renderObserverQuestions();
+
 
         const token =
             sessionStorage.getItem(
@@ -1152,209 +1318,96 @@ async function loadFacultyList() {
 
 async function submitObserverFeedback() {
 
-    const facultyInput =
-        document.getElementById(
-            "facultySelect"
-        );
+    const facultyInput = document.getElementById("facultySelect");
+    const facultyValue = document.getElementById("facultySelectValue");
+    const button = document.getElementById("submitFeedback");
 
-    const facultyValue =
-        document.getElementById(
-            "facultySelectValue"
-        );
-
-    const feedback =
-        document.getElementById(
-            "observerFeedback"
-        );
-
-    const button =
-        document.getElementById(
-            "submitFeedback"
-        );
-
-
-    // ==========================================
-    // VALIDATE FACULTY
-    // ==========================================
-
-    if (
-        !facultyValue.value ||
-        !facultyInput.value.trim()
-    ) {
-
-        showObserverMessage(
-            "Please search and select a valid faculty member.",
-            "error"
-        );
-
+    if (!facultyValue.value || !facultyInput.value.trim()) {
+        showObserverMessage("Please search and select a valid faculty member.", "error");
         return;
-
     }
 
+    const answers = {};
+    let firstInvalid = null;
 
-    // ==========================================
-    // VALIDATE FEEDBACK
-    // ==========================================
+    OBSERVER_QUESTIONS.forEach(function(q) {
+        let value = "";
 
-    if (
-        !feedback.value.trim()
-    ) {
+        if (q.type === "textarea") {
+            const el = document.querySelector('[name="' + q.id + '"]');
+            value = el ? el.value.trim() : "";
+            if (q.required && !value && !firstInvalid) firstInvalid = el;
+        } else {
+            const el = document.querySelector('input[name="' + q.id + '"]:checked');
+            value = el ? el.value : "";
+            if (q.required && !value && !firstInvalid) {
+                firstInvalid = document.querySelector('input[name="' + q.id + '"]');
+            }
+        }
 
-        showObserverMessage(
-            "Please enter feedback.",
-            "error"
-        );
+        answers[q.id] = value;
+    });
 
+    if (firstInvalid) {
+        showObserverMessage("Please answer all required questions.", "error");
+        firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
         return;
-
     }
 
-
-    // Disable button while submitting
-
-    button.disabled =
-        true;
-
+    button.disabled = true;
 
     try {
+        const params = new URLSearchParams();
+        params.append("action", "addFeedback");
+        params.append("token", token);
+        params.append("facultyMisId", facultyValue.value);
+        params.append("feedback", JSON.stringify(answers));
 
-        const params =
-            new URLSearchParams();
+        const response = await fetch(CONFIG.API_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            body: params.toString()
+        });
 
+        const data = await response.json();
 
-        // ==========================================
-        // API PARAMETERS
-        // ==========================================
-
-        params.append(
-            "action",
-            "addFeedback"
-        );
-
-
-        params.append(
-            "token",
-            token
-        );
-
-
-        /*
-         * IMPORTANT
-         *
-         * facultyValue contains the
-         * actual MIS ID of the selected faculty.
-         */
-
-        params.append(
-            "facultyMisId",
-            facultyValue.value
-        );
-
-
-        params.append(
-            "feedback",
-            feedback.value.trim()
-        );
-
-
-        // ==========================================
-        // SEND REQUEST
-        // ==========================================
-
-        const response =
-            await fetch(
-                CONFIG.API_URL,
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type":
-                            "application/x-www-form-urlencoded;charset=UTF-8"
-                    },
-
-                    body:
-                        params.toString()
-                }
-            );
-
-
-        const data =
-            await response.json();
-
-
-        // ==========================================
-        // SUCCESS
-        // ==========================================
-
-        if (
-            data.status ===
-            "success"
-        ) {
-
+        if (data.status === "success") {
             showObserverMessage(
-                "✓ Feedback submitted successfully.",
+                data.emailSent
+                    ? "✓ Feedback submitted successfully and email notification sent."
+                    : "✓ Feedback submitted successfully.",
                 "success"
             );
 
+            facultyInput.value = "";
+            facultyValue.value = "";
 
-            // Clear faculty selection
-
-            facultyInput.value =
-                "";
-
-            facultyValue.value =
-                "";
-
-
-            // Clear feedback
-
-            feedback.value =
-                "";
-
-
-            // Refresh feedback list
+            OBSERVER_QUESTIONS.forEach(function(q) {
+                if (q.type === "textarea") {
+                    const el = document.querySelector('[name="' + q.id + '"]');
+                    if (el) el.value = "";
+                } else {
+                    document.querySelectorAll('input[name="' + q.id + '"]').forEach(function(el) {
+                        el.checked = false;
+                    });
+                }
+            });
 
             loadFeedback();
-
-        }
-
-
-        // ==========================================
-        // SERVER ERROR
-        // ==========================================
-
-        else {
-
+        } else {
             showObserverMessage(
-                data.message ||
-                "Unable to submit feedback.",
+                data.message || "Unable to submit feedback.",
                 "error"
             );
-
         }
-
-
     } catch (error) {
-
-        console.error(
-            "Observer feedback submission error:",
-            error
-        );
-
-
-        showObserverMessage(
-            "Unable to connect to the server.",
-            "error"
-        );
-
-
+        console.error("Observer feedback submission error:", error);
+        showObserverMessage("Unable to connect to the server.", "error");
     } finally {
-
-        button.disabled =
-            false;
-
+        button.disabled = false;
     }
-
 }
 
 
