@@ -701,7 +701,7 @@ renderObserverQuestions();
 
 
             remarks.placeholder =
-                "Enter your remarks / concern (Optional)...";
+                "Enter your remarks / concern / Action Plan...";
 
 
             ackSection.appendChild(
@@ -786,7 +786,11 @@ renderObserverQuestions();
                         return;
 
                     }
-
+                    if (!remarks.value.trim()) {
+    alert("Please enter your remarks / concern / Action Plan.");
+    remarks.focus();
+    return;
+}
 
                     button.disabled =
                         true;
