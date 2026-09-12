@@ -908,6 +908,11 @@ renderObserverQuestions();
                         return;
 
                     }
+                    if (!remarks.value.trim()) {
+    alert("Please enter your remarks / concern.");
+    remarks.focus();
+    return;
+}
 
 
                     button.disabled =
