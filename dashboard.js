@@ -83,11 +83,11 @@ const OBSERVER_QUESTIONS = [
         ["4", "Satisfactory – Somewhat appropriate"],
         ["5", "Needs Improvement – Not appropriate/professional"]
     ] },
-    { id: "q18", type: "textarea", required: false, question: "Interaction with students and doubt-solving", placeholder: "Enter your observation..." },
-    { id: "q20", type: "textarea", required: false, question: "Effective utilization of lecture duration", placeholder: "Enter your observation..." },
-    { id: "q21", type: "textarea", required: false, question: "Strengths Observed", placeholder: "Mention the key strengths observed..." },
-    { id: "q22", type: "textarea", required: false, question: "Areas for Improvement", placeholder: "Mention areas that can be improved..." },
-    { id: "q23", type: "textarea", required: false, question: "Suggestions/Recommendations by Observer", placeholder: "Enter your suggestions or recommendations..." },
+    { id: "q18", type: "textarea", required: true, question: "Interaction with students and doubt-solving", placeholder: "Enter your observation..." },
+    { id: "q20", type: "textarea", required: true, question: "Effective utilization of lecture duration", placeholder: "Enter your observation..." },
+    { id: "q21", type: "textarea", required: true, question: "Strengths Observed", placeholder: "Mention the key strengths observed..." },
+    { id: "q22", type: "textarea", required: true, question: "Areas for Improvement", placeholder: "Mention areas that can be improved..." },
+    { id: "q23", type: "textarea", required: true, question: "Suggestions/Recommendations by Observer", placeholder: "Enter your suggestions or recommendations..." },
 ];
 
 function renderObserverQuestions() {
