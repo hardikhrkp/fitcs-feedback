@@ -417,6 +417,183 @@ body {
         rgba(255,255,255,0.20);
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.change-password-button {
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.10);
+    color: white;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.change-password-button:hover {
+    background: rgba(255,255,255,0.20);
+}
+
+.password-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.password-modal.hidden {
+    display: none;
+}
+
+.password-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15,23,42,0.55);
+}
+
+.password-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(15,23,42,0.25);
+    overflow: hidden;
+}
+
+.password-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 22px 24px 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.password-modal-header h2 {
+    margin: 0 0 5px;
+    color: #172554;
+    font-size: 20px;
+}
+
+.password-modal-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.password-close-button {
+    border: 0;
+    background: transparent;
+    color: #64748b;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.password-form {
+    padding: 22px 24px 24px;
+}
+
+.password-form label {
+    display: block;
+    margin: 0 0 7px;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.password-form input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 13px;
+    margin: 0 0 16px;
+    border: 1px solid #cbd5e1;
+    border-radius: 9px;
+    outline: none;
+    font-size: 14px;
+}
+
+.password-form input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+}
+
+.password-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.password-cancel-button,
+.password-save-button {
+    border: 0;
+    border-radius: 8px;
+    padding: 11px 17px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.password-cancel-button {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.password-save-button {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.password-save-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.password-message {
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin: -2px 0 16px;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.password-message.hidden {
+    display: none;
+}
+
+.password-error {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+.password-success {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+@media (max-width: 650px) {
+    .header-actions {
+        gap: 5px;
+    }
+    .change-password-button, .logout-button {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+    .password-modal-card {
+        max-width: 100%;
+    }
+}
+
 
 .dashboard-container {
 
@@ -1309,7 +1486,7 @@ body {
 /* ========================================
    OBSERVER QUESTIONNAIRE
 ======================================== */
-.observer-instructions{margin:0 0 18px;padding:12px 14px;border-radius:10px;background:#eff6ff;color:#475569;font-size:13px;line-height:1.5}.observer-questions{display:flex;flex-direction:column;gap:16px}.observer-question-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;box-shadow:0 3px 12px rgba(15,23,42,.04)}.observer-question-title{display:flex;align-items:flex-start;gap:10px;color:#172554;font-size:15px;font-weight:700;line-height:1.55;margin-bottom:15px}.question-number{min-width:30px;height:30px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}.required-star{color:#dc2626;margin-left:2px}.rating-options,.single-options,.yesno-options{display:flex;flex-direction:column;gap:9px}.rating-option,.single-option,.yesno-option{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;cursor:pointer;transition:.2s ease}.rating-option:hover,.single-option:hover,.yesno-option:hover{border-color:#93c5fd;background:#eff6ff}.rating-option input,.single-option input,.yesno-option input{margin:2px 6px 0 0;accent-color:#2563eb;flex-shrink:0}.rating-option span,.single-option span,.yesno-option span{color:#475569;font-size:13px;line-height:1.55}.yesno-options{flex-direction:row}.yesno-option{flex:1;align-items:flex-start}.observer-answer-textarea{width:100%;min-height:105px;padding:13px 14px;border:1px solid #cbd5e1;border-radius:10px;outline:none;resize:vertical;font-family:inherit;font-size:14px;line-height:1.6;color:#334155;background:#fff}.observer-answer-textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.10)}@media(max-width:650px){.observer-question-card{padding:15px}.yesno-options{flex-direction:column}.rating-option,.single-option,.yesno-option{padding:10px 11px}}
+.observer-instructions{margin:0 0 18px;padding:12px 14px;border-radius:10px;background:#eff6ff;color:#475569;font-size:13px;line-height:1.5}.observer-questions{display:flex;flex-direction:column;gap:16px}.observer-question-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;box-shadow:0 3px 12px rgba(15,23,42,.04)}.observer-question-title{display:flex;align-items:flex-start;gap:10px;color:#172554;font-size:15px;font-weight:700;line-height:1.55;margin-bottom:15px}.question-number{min-width:30px;height:30px;border-radius:50%;background:#dbeafe;color:#1d4ed8;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}.required-star{color:#dc2626;margin-left:2px}.rating-options,.single-options,.yesno-options{display:flex;flex-direction:column;gap:9px}.rating-option,.single-option,.yesno-option{display:flex;align-items:flex-start;gap:6px;padding:12px 14px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;cursor:pointer;transition:.2s ease}.rating-option:hover,.single-option:hover,.yesno-option:hover{border-color:#93c5fd;background:#eff6ff}.rating-option input,.single-option input,.yesno-option input{margin:2px 0 0 0;accent-color:#2563eb;flex:0 0 auto}.rating-option span,.single-option span,.yesno-option span{color:#475569;font-size:13px;line-height:1.55}.yesno-options{flex-direction:row}.yesno-option{flex:1;align-items:center;gap:6px}.yesno-option input{margin:0;flex:0 0 auto}.yesno-option span{line-height:1.2;white-space:nowrap}.observer-answer-textarea{width:100%;min-height:105px;padding:13px 14px;border:1px solid #cbd5e1;border-radius:10px;outline:none;resize:vertical;font-family:inherit;font-size:14px;line-height:1.6;color:#334155;background:#fff}.observer-answer-textarea:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.10)}@media(max-width:650px){.observer-question-card{padding:15px}.yesno-options{flex-direction:column}.rating-option,.single-option,.yesno-option{padding:10px 11px}}
 
 
 /* Full observer questionnaire feedback display */
