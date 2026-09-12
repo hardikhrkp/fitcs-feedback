@@ -823,7 +823,7 @@ renderObserverQuestions();
 
 
             remarks.placeholder =
-                "Enter your remarks / concern (Optional)...";
+                "Enter your remarks / concern / Action Plan...";
 
 
             ackSection.appendChild(
